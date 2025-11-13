@@ -2,7 +2,7 @@
 </script>
 
 <main>
-	<div>heyo, my name is Matt Bowlby!</div>
+	<div>in de beninging</div>
 </main>
 
 <style>
