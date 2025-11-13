@@ -32,4 +32,6 @@ jobs:
         port: ${{ secrets.SFTP_PORT }}
         source: "dist/*"
         target: "domains/matt-bowlby.com/public_html"
+        strip_components: 1
+        rm: true
 
