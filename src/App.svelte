@@ -2,7 +2,7 @@
 </script>
 
 <main>
-	<h1>Heyo, my name is Matt Bowlby. This is the future home of my website!</h1>
+	<h1>This website is really cool</h1>
 </main>
 
 <style>
