@@ -14,7 +14,7 @@
 
     async function loop() {
         while (true) {
-            await progress.set(1, { duration: 10000 });
+            await progress.set(1, { duration: 4000 });
             // 2. Instantly reset to 0 without animation
             await progress.set(0, { duration: 0 });
         }
@@ -46,6 +46,9 @@
 
     <main>
         <div class="scroll-container">
+            <div style="width: 100%; text-align: center;">
+                <span>hi there :)</span>
+            </div>
             <div style="position: relative;">
                 <div class="border horizontal left"></div>
                 <div class="border horizontal right"></div>

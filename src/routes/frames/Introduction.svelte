@@ -1,5 +1,7 @@
 <script lang="ts">
     import "./frame.css";
+    import TextBlock from "./TextBlock.svelte";
+
     function calculateYearsSince(dateString: string): number {
         const startDate = new Date(dateString);
         const currentDate = new Date();
@@ -15,100 +17,84 @@
 </script>
 
 <div class="frame" style="justify-content: flex-end;">
-    <div class="details">
-        <div style="display: flex; height: calc(50% - 10px); width: auto; gap: 20px;">
-            <div class="stat-block large"></div>
-            <div
-                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;"
-            >
-                <span class="tagline">Software Engineer.</span>
-                <span class="tagline">Web Developer.</span>
-                <span class="tagline">
-                    Programming <span class="tagline bold">Perfectionist.</span>
-                </span>
+    <div id="main-container">
+        <div id="tagline-container">
+            <div class="tagline-text">Software Engineer.</div>
+            <div class="tagline-text">Web Developer.</div>
+            <div class="tagline-text">
+                Programming <span class="tagline-text bold">Perfectionist.</span>
             </div>
         </div>
-        <div style="display: flex; gap: 20px; height: 100%;">
-            <div
-                style="display: flex; flex-direction: column; align-items: flex-end; gap: 20px; height: 100%;"
-            >
-                <div class="stat-block small">
-                    <span class="stat-number" style="font-size: 35cqh">3</span>
-                    <span class="stat-label" style="font-size: 20cqh">job positions</span>
-                </div>
-                <div class="stat-block wide">
-                    <span class="stat-number" style="font-size: 35cqh">6</span>
-                    <span class="stat-label" style="font-size: 20cqh"
-                        >personal & academic projects</span
-                    >
-                </div>
-            </div>
-            <div class="stat-block">
-                <span class="stat-number" style="font-size: 35cqh">{programmingExperience}</span>
-                <span class="stat-label" style="font-size: 12cqh"
-                    >years of programming experience</span
-                >
+        <div id="text-blocks-container">
+            <TextBlock>
+                <span style="font-size: 35cqh; font-weight: 900">{programmingExperience}</span>
+                <span style="font-size: 12cqh">years of programming experience</span>
+            </TextBlock>
+            <div id="small-text-blocks-container">
+                <TextBlock style="height: calc(13vh - 15px); aspect-ratio: 1/1; width: auto;">
+                    <span style="font-size: 35cqh; font-weight: 900">3</span>
+                    <span style="font-size: 20cqh">job positions</span>
+                </TextBlock>
+                <TextBlock style="height: calc(13vh - 15px); aspect-ratio: 2/1; width: auto;">
+                    <span style="font-size: 35cqh; font-weight: 900">6</span>
+                    <span style="font-size: 20cqh">personal & academic projects</span>
+                </TextBlock>
             </div>
         </div>
     </div>
-    <svg viewBox="0 0 1394 136" style="width: calc(100% - 20px); height: auto; user-select: none; ">
-        <use href="/matt_bowlby.svg#Matt_Bowlby_Logo" />
-    </svg>
+    <div id="matt-bowlby-container">
+        <svg
+            viewBox="0 0 1394 136"
+            style="width: calc(100vw - 40px); height: auto; user-select: none; "
+        >
+            <use href="/matt_bowlby.svg#Matt_Bowlby_Name" />
+        </svg>
+    </div>
 </div>
 
 <style>
-    .details {
+    #matt-bowlby-container {
+        height: fit-content;
+        width: fit-content;
+        user-select: none;
+        flex-shrink: 0;
+    }
+    #main-container {
+        height: fit-content;
+        width: 100%;
+        margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        width: 100%;
-        height: 25vh;
-        margin-bottom: 20px;
-        container-type: size;
     }
-    .stat-block {
-        height: 100%;
-        aspect-ratio: 1 / 1;
-        background-color: var(--text-color);
+    #text-blocks-container {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+    #small-text-blocks-container {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-        box-sizing: border-box;
+        align-items: flex-end;
+        gap: 20px;
+    }
+    #tagline-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
         container-type: size;
-        border-radius: 5px;
     }
 
-    .stat-block.small {
-        height: calc(50% - 10px); /* Adjust for the 20px gap */
-    }
-    .stat-block.wide {
-        height: calc(50% - 10px); /* Adjust for the 20px gap */
-        aspect-ratio: 2/1;
-        width: auto;
-    }
-
-    .stat-number {
-        color: var(--bg-color);
-        font-weight: 900;
-        user-select: none;
-        line-height: 1;
-    }
-
-    .stat-label {
-        color: var(--bg-color);
-        font-weight: 400;
-        user-select: none;
-        text-align: center;
-    }
-    .tagline {
+    .tagline-text {
         font-size: 10cqh;
         font-weight: 400;
         user-select: none;
         white-space: nowrap;
     }
-    .tagline.bold {
+
+    .tagline-text.bold {
         font-weight: 900;
     }
 </style>
