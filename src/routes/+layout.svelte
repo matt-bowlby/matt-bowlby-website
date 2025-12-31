@@ -1,5 +1,7 @@
 <script lang="ts">
     import "../app.css";
+    import "./layout.css";
+
     import Header from "./Header.svelte";
     import { Tween } from "svelte/motion";
     import { linear } from "svelte/easing";
@@ -44,57 +46,15 @@
 
     <main>
         <div class="scroll-container">
-            {@render children()}
+            <div style="position: relative;">
+                <div class="border horizontal left"></div>
+                <div class="border horizontal right"></div>
+                <div class="background"></div>
+                <div>
+                    {@render children()}
+                </div>
+            </div>
         </div>
+        <div class="border vertical bottom"></div>
     </main>
 </div>
-
-<style>
-    /* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"); */
-
-    /* :root {
-        --bg-color: #191919;
-        --text-color: #fff4df;
-
-        --bg-gradient-angle: 135deg;
-        --bg-gradient-width: 20px;
-        --bg-gradient-spacing: 40px;
-        --bg-gradient-offset: 0px;
-
-        --background-gradient: repeating-linear-gradient(
-            var(--bg-gradient-angle),
-            var(--bg-color) var(--bg-gradient-offset),
-            var(--bg-color) calc(var(--bg-gradient-offset) + var(--bg-gradient-width)),
-            color-mix(in srgb, var(--bg-color), white 1%)
-                calc(var(--bg-gradient-offset) + var(--bg-gradient-width)),
-            color-mix(in srgb, var(--bg-color), white 1%)
-                calc(
-                    var(--bg-gradient-offset) + var(--bg-gradient-width) +
-                        var(--bg-gradient-spacing)
-                )
-        );
-
-        --header-height: 60px;
-    }
-
-    :global(body) {
-        margin: 0;
-        font-family: "Inter", sans-serif;
-        background-color: var(--bg-color);
-        background-attachment: local;
-        color: var(--text-color);
-        box-sizing: border-box;
-        overflow: hidden;
-    } */
-
-    .scroll-container {
-        overflow-y: scroll;
-        scroll-snap-type: y mandatory;
-        background: var(--background-gradient);
-        z-index: -1;
-        height: calc(100vh - var(--header-height));
-        display: flex;
-        flex-direction: column;
-        margin-top: calc(var(--header-height));
-    }
-</style>
