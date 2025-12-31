@@ -1,7 +1,21 @@
 <script lang="ts">
+    import { onMount } from "svelte";
+
+    let navElement: HTMLElement | null = null;
+
+    onMount(() => {
+        const observer = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+                document.documentElement.style.setProperty('--header-height', `${entry.borderBoxSize[0].blockSize}px`);
+            }
+        });
+
+        if (navElement) observer.observe(navElement);
+        return () => observer.disconnect();
+    });
 </script>
 
-<div id="header">
+<div bind:this={navElement} id="header">
     <div style="display:flex; align-items:center;">
         <div class="logo-block"></div>
         <span style="font-weight: bold; user-select: none;">Matt Bowlby</span>

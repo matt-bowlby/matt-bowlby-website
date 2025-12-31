@@ -1,4 +1,5 @@
 <script lang="ts">
+    import "../app.css";
     import Header from "./Header.svelte";
     import { Tween } from "svelte/motion";
     import { linear } from "svelte/easing";
@@ -42,14 +43,16 @@
     <Header />
 
     <main>
-        {@render children()}
+        <div class="scroll-container">
+            {@render children()}
+        </div>
     </main>
 </div>
 
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+    /* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"); */
 
-    :root {
+    /* :root {
         --bg-color: #191919;
         --text-color: #fff4df;
 
@@ -70,19 +73,28 @@
                         var(--bg-gradient-spacing)
                 )
         );
-    }
 
-    :global(html) {
-        scroll-snap-type: y mandatory;
-        scroll-behavior: smooth;
+        --header-height: 60px;
     }
 
     :global(body) {
         margin: 0;
         font-family: "Inter", sans-serif;
-        background: var(--background-gradient);
+        background-color: var(--bg-color);
         background-attachment: local;
         color: var(--text-color);
         box-sizing: border-box;
+        overflow: hidden;
+    } */
+
+    .scroll-container {
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        background: var(--background-gradient);
+        z-index: -1;
+        height: calc(100vh - var(--header-height));
+        display: flex;
+        flex-direction: column;
+        margin-top: calc(var(--header-height));
     }
 </style>

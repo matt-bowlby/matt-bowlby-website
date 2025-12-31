@@ -1,0 +1,13 @@
+.frame {
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    align-items: center;
+    flex-shrink: 0;
+}
