@@ -1,6 +1,7 @@
 <script lang="ts">
     import "./frame.css";
     import TextBlock from "./TextBlock.svelte";
+    import MattBowlby from "$lib/components/svg/MattBowlby.svelte";
 
     function calculateYearsSince(dateString: string): number {
         const startDate = new Date(dateString);
@@ -42,23 +43,16 @@
             </div>
         </div>
     </div>
-    <div id="matt-bowlby-container">
-        <svg
-            viewBox="0 0 1394 136"
-            style="width: calc(100vw - 40px); height: auto; user-select: none; "
-        >
-            <use href="/matt_bowlby.svg#Matt_Bowlby_Name" />
-        </svg>
-    </div>
+    <MattBowlby width="calc(100vw - 40px)" height="auto" fill="var(--text-color)" />
 </div>
 
 <style>
-    #matt-bowlby-container {
+    /* #matt-bowlby-container {
         height: fit-content;
         width: fit-content;
         user-select: none;
         flex-shrink: 0;
-    }
+    } */
     #main-container {
         height: fit-content;
         width: 100%;
