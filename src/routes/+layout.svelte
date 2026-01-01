@@ -2,7 +2,7 @@
     import "../app.css";
     import "./layout.css";
 
-    import Header from "./Header.svelte";
+    import Header from "./header/Header.svelte";
     import { Tween } from "svelte/motion";
     import { linear } from "svelte/easing";
     import { onMount } from "svelte";

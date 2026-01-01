@@ -1,32 +1,78 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import HeaderOptions from "./HeaderOptions.svelte";
 
     let navElement: HTMLElement | null = null;
 
     onMount(() => {
         const observer = new ResizeObserver((entries) => {
             for (let entry of entries) {
-                document.documentElement.style.setProperty('--header-height', `${entry.borderBoxSize[0].blockSize}px`);
+                document.documentElement.style.setProperty(
+                    "--header-height",
+                    `${entry.borderBoxSize[0].blockSize}px`
+                );
             }
         });
 
         if (navElement) observer.observe(navElement);
         return () => observer.disconnect();
     });
+
+    let expanded = $state(false);
+    let options = $state([""]);
 </script>
 
-<div bind:this={navElement} id="header">
+<div
+    bind:this={navElement}
+    id="header"
+    onmouseleave={() => {
+        expanded = false;
+    }}
+    role="navigation"
+    aria-label="Main Navigation"
+>
     <div style="display:flex; align-items:center;">
         <div class="logo-block"></div>
         <span style="font-weight: bold; user-select: none;">Matt Bowlby</span>
     </div>
     <div style="display:flex; gap:40px; align-items:center; z-index: 11;">
-        <button>Experience</button>
-        <button>Projects</button>
-        <button>Merits</button>
-        <button>About Me</button>
-        <button style="font-weight: bold;">Contact</button>
+        <button
+            onmouseenter={() => {
+                options = ["Work History", "Skills", "Education"];
+                expanded = true;
+            }}
+        >
+            Experience
+        </button>
+        <button
+            onmouseenter={() => {
+                options = ["Personal Projects", "Academic Projects", "Industry Projects"];
+                expanded = true;
+            }}
+        >
+            Projects
+        </button>
+        <button
+            onmouseenter={() => {
+                options = ["Awards", "Certifications", "Endorsements"];
+                expanded = true;
+            }}
+        >
+            Merits
+        </button>
+        <button
+            onmouseenter={() => {
+                options = ["Who I am", "Personal Updates", "Timeline"];
+                expanded = true;
+            }}
+        >
+            About Me
+        </button>
+        <button style="font-weight: bold;" onmouseenter={() => (expanded = false)}>
+            Contact
+        </button>
     </div>
+    <HeaderOptions {expanded} {options} />
 </div>
 
 <style>
